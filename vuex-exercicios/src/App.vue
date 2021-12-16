@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<h1>Exercícios Vuex</h1>
 		<div class="linha">
 			<Parametros />
 			<Loja />
@@ -30,8 +29,7 @@ export default {
 }
 
 body {
-	font-size: 2rem;
-	background: linear-gradient(to right, rgb(0, 0, 0), rgb(67, 67, 67));
+	font-size: 1rem;
 }
 
 #app {
@@ -41,16 +39,12 @@ body {
 	color: #FFF;
 }
 
-h1 {
-	font-weight: 200;
-}
-
 .linha {
 	display: flex;
 }
 
 button {
-	font-size: 1.8rem;
+	font-size: 1rem;
 	padding: 5px 15px;
 	border-radius: 5px;
 	color: #222;
