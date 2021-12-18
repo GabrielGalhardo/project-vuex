@@ -11,48 +11,56 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+// import { mapActions } from "vuex";
 export default {
-    data() {
-        return {
-            sequencia: 1,
-            // quantidade: 1,
-            // preco: 9.99,
-        }
+  data() {
+    return {
+      sequencia: 1,
+    };
+  },
+  computed: {
+    quantidade: {
+      get() {
+        return this.$store.state.parametros.quantidade;
+      },
+      set(valor) {
+        this.$store.commit("setQuantidade", valor);
+      },
     },
-    computed: {
-        quantidade(){
-            return this.$store.state.quantidade
-        },
-        preco(){
-            return this.$store.state.preco
-        }
+    preco: {
+      get() {
+        return this.$store.state.parametros.preco;
+      },
+      set(valor) {
+        this.$store.commit("parametros/setPreco", valor);
+      },
     },
-    methods: {
+  },
+  methods: {
+    // ...mapActions("carrinho",["adicionarProduto"]),
 
-        ...mapActions(['adicionarProduto']),
+    adicionar() {
+      const produto = {
+        id: this.sequencia,
+        nome: `Produto ${this.sequencia}`,
+        quantidade: this.quantidade,
+        preco: this.preco,
+      };
+      this.sequencia++;
+      // eslint-disable-next-line
+      console.log(produto);
 
-        adicionar() {
-            const produto = {
-                id: this.sequencia,
-                nome: `Produto ${this.sequencia}`,
-                quantidade: this.quantidade,
-                preco: this.preco
-            }
-            this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
+      // this.$store.commit('adicionarProduto', produto )
 
-            // this.$store.commit('adicionarProduto', produto )
-            
-            
-            // Podefazer dessas duas  maneiras com o actions
-            this.$store.dispatch('adicionarProduto', produto)
-            // this.adicionarProduto(produto)
-
-        }
-    }
-}
+      // Podefazer dessas duas  maneiras com o actions
+      //   this.adicionarProduto(produto);
+      this.$store.dispatch("carrinho/adicionarProduto", produto);
+      
+      // console.log(this.$store.getters.getNome)
+      // console.log(this.$store.getters.getNomeCompleto)
+    },
+  },
+};
 </script>
 
 <style>

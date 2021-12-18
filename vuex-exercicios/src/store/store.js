@@ -1,42 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import  * as getters from './getters'
+import carrinho from './modules/carrinho'
+import parametros from './modules/parametros'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    produtos: [],
-    quantidade: 0,
-    preco: 0
-  },
-  getters: {
-    valorTotal(state) {
-      return state.produtos
-        .map((p) => p.quantidade * p.preco)
-        .reduce((total, atual) => total + atual, 0);
+    state: {
+      nome: 'Gabriel',
+      sobrenome: 'Galhardo'  
     },
-  },
-  mutations: {
-    adicionarProduto(state, produto) {
-      state.produtos.push(produto);
-    },
-    setQuantidade(state, quantidade){
-        state.quantidade = quantidade
-    },
-    setPreco(state, preco){
-        state.preco = preco
-    }
-  },
-  actions: {
-    // adicionarProduto(context, produto) {
-    //     setTimeout(() => {
-    //         context.commit('adicionarProduto', produto)
-    //     }, 1000);
-    // }
-    adicionarProduto({ commit }, produto) {
-      setTimeout(() => {
-        commit("adicionarProduto", produto);
-      }, 1000);
-    },
-  },
+    getters,
+    modules: { carrinho, parametros }
 });
